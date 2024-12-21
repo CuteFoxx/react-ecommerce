@@ -1,15 +1,14 @@
 import {Outlet} from "react-router";
+import Header from "./components/Header/Header.tsx";
 
 function App() {
 
-  return (
-      <>
-          <h1 className="text-3xl font-bold underline">
-              Hello world!
-          </h1>
-         <Outlet />
-      </>
-  )
+    return (
+        <>
+            <Header/>
+            <Outlet/>
+        </>
+    )
 }
 
 export default App
