@@ -2,7 +2,6 @@ import {NavLink} from "react-router";
 
 type DesktopMenuProps = {
     className?: string;
-    linkClassName?: string;
     links: {
         url: string;
         title: string;
@@ -10,14 +9,14 @@ type DesktopMenuProps = {
 }
 
 
-const DesktopMenu = ({className, linkClassName, links}: DesktopMenuProps) => {
+const NavLinks = ({className, links}: DesktopMenuProps) => {
     return (
         <nav>
             <ul className={className ? className : ''}>
                 {links.map(({url, title}, index) => (
                     <li key={index}>
                         <NavLink className={({isActive}) =>
-                          isActive ? `text-pale-orange ${linkClassName}` : linkClassName
+                          isActive ? `text-pale-orange hover:text-orange transition-all uppercase font-bold` : 'hover:text-orange transition-all uppercase font-bold'
                         } to={url} title={title}>{title}</NavLink>
                     </li>
                 ))}
@@ -26,4 +25,4 @@ const DesktopMenu = ({className, linkClassName, links}: DesktopMenuProps) => {
     );
 };
 
-export default DesktopMenu;
+export default NavLinks;

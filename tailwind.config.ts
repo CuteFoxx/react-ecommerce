@@ -19,11 +19,19 @@ export default {
         },
 
         fontSize: {
-            'sub-title': ['0.8125rem', {
+            'sub-title': ['0.8125rem', { /*13px/25px-lh*/
                 lineHeight: '1.5625rem',
                 letterSpacing: '0.0625rem',
                 fontWeight: 'bold'
             }],
+            'body': [ /*15px-fs/25px-lh*/
+                '0.9375', {
+                    lineHeight: '1.5625rem',
+                }
+            ]
+        },
+        fontFamily: {
+            'sans': ['Manrope'],
         }
     },
     plugins: [],

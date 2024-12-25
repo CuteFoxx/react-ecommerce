@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: "Manrope";
+    src: url("/fonts/Manrope-VariableFont.woff2")
+    format("woff2-variations");
+    font-weight: 400 700;
+}
+
+
 body{
     width: 100%;
 }
@@ -12,6 +20,6 @@ body{
 
 @layer utilities {
     .container {
-        @apply max-w-[90em] w-full mx-auto px-[10.3125rem] md:!px-10;
+        @apply px-6 max-w-[90em] w-full mx-auto md:!px-10 xl:!px-[10.3125rem];
     }
 }
