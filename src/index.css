@@ -22,4 +22,10 @@ body{
     .container {
         @apply px-6 max-w-[90em] w-full mx-auto md:!px-10 xl:!px-[10.3125rem];
     }
+    .overflow-container{
+        @apply mx-[-1.5rem] px-6 md:mx-[-2.5rem] md:px-10 lg:mx-[-10.3125rem] lg:px-[10.3125rem];
+    }
+    .button{
+        @apply transition-all uppercase py-[0.9375rem] pl-[1.96875rem] pr-[1.84375rem] bg-orange hover:brightness-95 hover:scale-[.98]
+    }
 }

@@ -25,8 +25,30 @@ export default {
                 fontWeight: 'bold'
             }],
             'body': [ /*15px-fs/25px-lh*/
-                '0.9375', {
+                '0.9375rem', {
                     lineHeight: '1.5625rem',
+                }
+            ],
+            'overline' : [
+                /*14px-fs, 10-ls*/
+                '0.875rem', {
+                    letterSpacing: '0.625rem',
+                    fontWeight: "regular",
+                }
+            ],
+            'intro-title': [
+                /*36px-fs 40px-lh*/
+                '2.25rem', {
+                    lineHeight: '2.5rem',
+                    letterSpacing: '0.080625rem',
+                    fontWeight: 'bold',
+                }
+            ],
+            'intro-tablet': [
+                /*56px-fs 58px-lh 2px-ls*/
+                '3.5rem', {
+                    lineHeight: '3.625rem',
+                    letterSpacing: '0.125rem',
                 }
             ]
         },

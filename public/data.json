@@ -9,6 +9,11 @@
       "desktop": "./assets/product-yx1-earphones/desktop/image-product.jpg"
     },
     "category": "earphones",
+    "introImage": {
+      "mobile": "./assets/product-yx1-earphones/mobile/image-intro.png",
+      "tablet": "./assets/product-yx1-earphones/tablet/image-intro.png",
+      "desktop": "./assets/product-yx1-earphones/desktop/image-intro.png"
+    },
     "categoryImage": {
       "mobile": "./assets/product-yx1-earphones/mobile/image-category-page-preview.jpg",
       "tablet": "./assets/product-yx1-earphones/tablet/image-category-page-preview.jpg",
@@ -265,6 +270,11 @@
       "desktop": "./assets/product-xx99-mark-two-headphones/desktop/image-product.jpg"
     },
     "category": "headphones",
+    "introImage": {
+      "mobile": "./assets/product-xx99-mark-two-headphones/mobile/image-intro.png",
+      "tablet": "./assets/product-xx99-mark-two-headphones/tablet/image-intro.png",
+      "desktop": "./assets/product-xx99-mark-two-headphones/desktop/image-intro.png"
+    },
     "categoryImage": {
       "mobile": "./assets/product-xx99-mark-two-headphones/mobile/image-category-page-preview.jpg",
       "tablet": "./assets/product-xx99-mark-two-headphones/tablet/image-category-page-preview.jpg",
@@ -441,6 +451,11 @@
       "desktop": "./assets/product-zx9-speaker/desktop/image-product.jpg"
     },
     "category": "speakers",
+    "introImage": {
+      "mobile": "./assets/product-zx9-speaker/mobile/image-intro.png",
+      "tablet": "./assets/product-zx9-speaker/tablet/image-intro.png",
+      "desktop": "./assets/product-zx9-speaker/desktop/image-intro.png"
+    },
     "categoryImage": {
       "mobile": "./assets/product-zx9-speaker/mobile/image-category-page-preview.jpg",
       "tablet": "./assets/product-zx9-speaker/tablet/image-category-page-preview.jpg",

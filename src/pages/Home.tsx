@@ -1,7 +1,13 @@
+import {useLoaderData} from "react-router";
+import Intro from "../components/Intro/Intro.tsx";
+import {Product} from "../types/Product.ts";
+
 const Home = () => {
+    const data = useLoaderData<Product[]>();
+
     return (
         <div className=''>
-            Home
+            <Intro data={data} />
         </div>
     );
 };
