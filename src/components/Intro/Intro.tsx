@@ -1,8 +1,9 @@
 import {Swiper, SwiperSlide} from 'swiper/react';
-import 'swiper/css';
+import '../../../node_modules/swiper/swiper.css'
 import {Product} from "../../types/Product.ts";
 import {Autoplay} from "swiper/modules";
 import {Link} from "react-router";
+import ResponsiveImage from "../ResponsiveImage/ResponsiveImage.tsx";
 
 const Intro = ({data}: { data: Product[] }) => {
     const newProducts: Product[] = data.filter((product) => product.new);
@@ -25,13 +26,7 @@ const Intro = ({data}: { data: Product[] }) => {
                                 <Link className='uppercase button' to={`/${product.category}/${product.slug}`}>See
                                     product</Link>
                             </div>
-                            <picture
-                                className='absolute top-[3.4375rem] left-0 -z-10 w-full md:max-w-[33.125rem] md:max-h-[34.6875rem] md:left-1/2 md:-translate-x-1/2 lg:relative lg:left-0 lg:translate-x-0 lg:max-w-[30rem] lg:max-h-[32.5rem] lg:top-0'>
-                                <source srcSet={product.introImage.desktop} media='(min-width: 1024)'/>
-                                <source srcSet={product.introImage.tablet} media='(min-width: 768px)'/>
-                                <img src={product.introImage.mobile} alt={product.name}
-                                     className='object-cover w-full brightness-[.5]'/>
-                            </picture>
+                            <ResponsiveImage className='absolute top-[3.4375rem] left-0 -z-10 w-full md:max-w-[33.125rem] md:max-h-[34.6875rem] md:left-1/2 md:-translate-x-1/2 lg:relative lg:left-0 lg:translate-x-0 lg:max-w-[30rem] lg:max-h-[32.5rem] lg:top-0' imageClassName='object-cover w-full brightness-[.5]' alt={product.name} {...product.introImage} />
                         </SwiperSlide>
                     ))
                 }

@@ -1,8 +1,4 @@
-type devices = {
-    mobile: string;
-    tablet: string;
-    desktop: string;
-}
+import type { Devices as devices } from './Devices';
 
 type productShort = {
     slug: string;
