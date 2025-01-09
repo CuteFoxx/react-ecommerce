@@ -8,16 +8,13 @@ import ResponsiveImage from "../ResponsiveImage/ResponsiveImage.tsx";
 const Intro = ({data}: { data: Product[] }) => {
     const newProducts: Product[] = data.filter((product) => product.new);
 
-    console.log(newProducts);
-
-
     return (
         <div className='overflow-container overflow-hidden bg-dark text-white'>
-            <Swiper modules={[Autoplay]} autoplay={{delay: 3500, pauseOnMouseEnter: true}} slidesPerView={"auto"} className='!overflow-visible !-ml-6 lg:!overflow-hidden'>
+            <Swiper modules={[Autoplay]} autoplay={{delay: 3500, pauseOnMouseEnter: true}} slidesPerView={1} className='!overflow-visible !-mx-6 md:!-mx-0 lg:!overflow-hidden lg:max-w-[69.375rem]'>
                 {
                     newProducts.map((product: Product) => (
                         <SwiperSlide key={product.id}
-                                     className='relative text-center !flex items-center flex-col z-[1] min-h-[31.8125rem] pt-[6.875rem] pb-[7rem] !w-screen md:!min-h-[40rem] lg:!w-full lg:flex-row lg:justify-between lg:text-left md:pb-[10.4375rem] md:pt-[7.875rem] lg:pt-[3.625rem] lg:items-start'>
+                                     className='relative text-center !flex items-center !min-w-screen md:min-w-full flex-col z-[1] min-h-[31.8125rem] pt-[6.875rem] pb-[7rem] md:!min-h-[40rem] lg:!w-full lg:flex-row lg:justify-between lg:text-left md:pb-[10.4375rem] md:pt-[7.875rem] lg:pt-[3.625rem] lg:items-start '>
                             <div className='lg:pt-[4.6875rem]'>
                                 <p className='uppercase text-overline opacity-50 mb-[1rem] md:mb-6'>New
                                     product</p>

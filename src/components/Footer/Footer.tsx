@@ -1,7 +1,7 @@
 import Logo from "../Logo/Logo.tsx";
 import NavLinks from "../NavLinks/NavLinks.tsx";
 import Socials from "../Socials/Socials.tsx";
-import Links from "../../routes/links.ts";
+import Links from "../../utils/links.ts";
 
 const Footer = () => {
 

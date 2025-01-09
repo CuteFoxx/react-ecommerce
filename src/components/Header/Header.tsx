@@ -4,7 +4,7 @@ import Logo from "../Logo/Logo.tsx";
 import NavLinks from "../NavLinks/NavLinks.tsx";
 import Menu from "./Menu/Menu.tsx";
 import {useEffect, useState} from "react";
-import Links from "../../routes/links.ts";
+import Links from "../../utils/links.ts";
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);

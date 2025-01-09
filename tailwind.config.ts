@@ -29,7 +29,7 @@ export default {
                     lineHeight: '1.5625rem',
                 }
             ],
-            'overline' : [
+            'overline': [
                 /*14px-fs, 10-ls*/
                 '0.875rem', {
                     letterSpacing: '0.625rem',
@@ -49,6 +49,21 @@ export default {
                 '3.5rem', {
                     lineHeight: '3.625rem',
                     letterSpacing: '0.125rem',
+                }
+            ],
+            'h2': [
+                /*40-fs 44-lh*/
+                '2.5rem', {
+                    lineHeight: '2.75rem',
+                    letterSpacing: '0.09375rem',
+                    fontWeight: 'bold',
+                }
+            ],
+            'h4': [
+                '1.75rem', {
+                    lineHeight: '1.3571',
+                    letterSpacing: '0.125rem',
+                    fontWeight: 'bold',
                 }
             ]
         },
