@@ -9,24 +9,6 @@ import Links from "../../utils/links.ts";
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
 
-    const mobileLinks = [
-        {
-            url: '/category/headphones',
-            title: 'Headphones',
-            img: '/assets/shared/desktop/image-category-thumbnail-headphones.png'
-        },
-        {
-            url: '/category/speakers',
-            title: 'Speakers',
-            img: '/assets/shared/desktop/image-category-thumbnail-speakers.png'
-        },
-        {
-            url: '/category/earphones',
-            title: 'Earphones',
-            img: '/assets/shared/desktop/image-category-thumbnail-earphones.png'
-        }
-    ]
-
     useEffect(() => {
         if (isOpen){
             document.body.style.overflow = "hidden";
@@ -49,7 +31,7 @@ const Header = () => {
                 <NavLinks links={Links} className='hidden lg:flex text-white uppercase gap-[2.125rem] text-sub-title'/>
                 <CartButton/>
             </div>
-            <Menu links={mobileLinks} className={`flex flex-col w-full text-black bg-white transition-all duration-500 absolute bottom-0 z-[0] px-6 pt-8 pb-[2.1875rem] md:px-10 md:pb-[4.1875rem] rounded-b-lg overflow-hidden ${isOpen ? 
+            <Menu className={`flex flex-col w-full text-black bg-white transition-all duration-500 absolute bottom-0 z-[0] px-6 pt-8 pb-[2.1875rem] md:px-10 md:pb-[4.1875rem] rounded-b-lg overflow-hidden ${isOpen ? 
                 'opacity-100 translate-y-[100%]' : 
                 'opacity-0 pointer-events-none translate-y-[-100%]'}`}/>
         </header>
