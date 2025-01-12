@@ -60,6 +60,7 @@ export default {
                 }
             ],
             'h4': [
+                /*28-fs 1-ls*/
                 '1.75rem', {
                     lineHeight: '1.3571',
                     letterSpacing: '0.125rem',

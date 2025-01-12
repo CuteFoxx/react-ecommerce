@@ -14,7 +14,7 @@ const ResponsiveImage = ({mobile,tablet,desktop,alt ,className, imageClassName}:
             <source srcSet={desktop} media='(min-width: 1024)'/>
             <source srcSet={tablet} media='(min-width: 768px)'/>
             <img src={mobile} alt={alt && alt}
-                 className={imageClassName}/>
+                 className={`${imageClassName} h-full w-full object-cover`}/>
         </picture>
     );
 };

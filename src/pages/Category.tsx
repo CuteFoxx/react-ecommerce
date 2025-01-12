@@ -1,22 +1,19 @@
-import {useParams} from "react-router";
-import Headphones from "./Headphones.tsx";
-import Earphones from "./Earphones.tsx";
-import Speakers from "./Speakers.tsx";
-import Error from "../components/Error/Error.tsx";
+import {useLoaderData, useParams} from "react-router";
+import {Product} from "../types/Product.ts";
+import CategoryTitle from "../components/CategoryTitlte/CategoryTitle.tsx";
+import ProductsWrapper from "../components/ProductsWrapper/ProductsWrapper.tsx";
 
 const Category = () => {
-    const {category} = useParams()
+    const {category} = useParams();
+    const products = useLoaderData<Product[]>();
+    const filteredProducts = products.filter((p) => p.category === category);
 
-    switch (category) {
-        case 'headphones':
-            return <Headphones/>
-        case 'earphones':
-            return <Earphones/>
-        case 'speakers':
-            return <Speakers/>
-        default:
-            return <Error/>
-    }
+    return (
+        <>
+            {category && <CategoryTitle title={category}/>}
+            { filteredProducts && <ProductsWrapper products={filteredProducts}/> }
+        </>
+        )
 
 };
 

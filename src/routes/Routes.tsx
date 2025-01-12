@@ -4,12 +4,13 @@ import Home from "../pages/Home.tsx";
 import Category from "../pages/Category.tsx";
 import homeLoader from "../loaders/homeLoader.ts";
 import Error from "../components/Error/Error.tsx";
+import categoryLoader from "../loaders/categoryLoader.ts";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route element={<App/>} errorElement={<Error/>}>
             <Route index element={<Home/>} loader={homeLoader}/>
-            <Route path="/:category" element={<Category/>}/>
+            <Route path="/:category" element={<Category/>} loader={categoryLoader}/>
         </Route>
     )
 );
