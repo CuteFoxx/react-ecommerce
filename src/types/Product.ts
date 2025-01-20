@@ -15,6 +15,7 @@ export type Product = {
     introImage: devices;
     categoryImage: devices;
     new: boolean;
+    featured: boolean;
     price: number;
     description: string;
     features: string;
@@ -22,6 +23,7 @@ export type Product = {
       quantity: number;
       item: string
     }[]
+    featuredImages: devices;
     gallery: {
         first: devices;
         second: devices;

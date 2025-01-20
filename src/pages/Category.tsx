@@ -7,7 +7,6 @@ const Category = () => {
     const {category} = useParams();
     const products = useLoaderData<Product[]>();
     const filteredProducts = products.filter((p) => p.category === category);
-
     return (
         <>
             {category && <CategoryTitle title={category}/>}

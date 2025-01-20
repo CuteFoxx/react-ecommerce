@@ -6,7 +6,7 @@ const Socials = () => {
     return (
         <div className='flex gap-4'>
             <Facebook url={'https://www.facebook.com/'}/>
-            <X url={'x.com'} className={'w-6 h-5'}/>
+            <X url={'https://x.com/'} className={'w-6 h-5'}/>
             <Instagram url={'https://www.instagram.com/'}/>
         </div>
     );

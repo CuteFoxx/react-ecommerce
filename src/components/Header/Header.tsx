@@ -3,11 +3,15 @@ import HamburgerMenu from "./HamburgerMenu/HamburgerMenu.tsx";
 import Logo from "../Logo/Logo.tsx";
 import NavLinks from "../NavLinks/NavLinks.tsx";
 import Menu from "./Menu/Menu.tsx";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import Links from "../../utils/links.ts";
+import {useDispatch, useSelector} from "react-redux";
+import {setIsOpen} from "../../slices/isOpenSlice.ts";
 
 const Header = () => {
-    const [isOpen, setIsOpen] = useState(false);
+    const isOpen = useSelector((state : any) => state.isOpen.value.isOpen);
+    const dispatch = useDispatch();
+
 
     useEffect(() => {
         if (isOpen){
@@ -26,7 +30,8 @@ const Header = () => {
     return (
         <header className={`bg-dark relative z-10 before:content-[\" \"] before:block before:bg-dark before:opacity-0 ${isOpen ? "before:opacity-35  before:w-screen before:h-screen before:-z-10 before:absolute before:transition-all " : ""}`}>
             <div className='md:container bg-dark relative z-10 flex items-center  px-6 py-8 justify-between md:justify-items-start border-[#979797] border-b'>
-                <HamburgerMenu className='lg:hidden' onClick={() => setIsOpen(!isOpen)}/>
+                <HamburgerMenu className='lg:hidden' onClick={() => dispatch(setIsOpen({isOpen: !isOpen}
+                ))} />
                 <Logo className="mx-auto md:flex-grow md:m-0 md:!ml-[2.625rem] lg:!m-0 lg:flex-grow-0" link={'/'} imgProps={{src: "/icons/logo.svg", alt: "logo"}}/>
                 <NavLinks links={Links} className='hidden lg:flex text-white uppercase gap-[2.125rem] text-sub-title'/>
                 <CartButton/>

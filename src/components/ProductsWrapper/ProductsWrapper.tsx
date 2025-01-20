@@ -5,7 +5,7 @@ const ProductsWrapper = ({products}: {products: Product[]}) => {
     return (
         <div className='mb-[7.5rem] grid gap-[7.5rem]'>
             {products && products.map((product) => (
-                <ProductBrief product={product} />
+                <ProductBrief product={product} key={product.id} />
             ))}
         </div>
     );

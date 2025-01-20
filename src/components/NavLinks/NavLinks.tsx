@@ -2,6 +2,7 @@ import {NavLink} from "react-router";
 
 type DesktopMenuProps = {
     className?: string;
+    handleClick?: () => void;
     links: {
         url: string;
         title: string;
