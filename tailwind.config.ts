@@ -60,11 +60,27 @@ export default {
                     fontWeight: 'bold',
                 }
             ],
+            'h3': [
+                /*32-fs 36-lh 1-ls*/
+                '2rem', {
+                    lineHeight: '2.25rem',
+                    letterSpacing: '0.071875rem',
+                    fontWeight: 'bold',
+                }
+            ],
             'h4': [
                 /*28-fs 1-ls*/
                 '1.75rem', {
                     lineHeight: '1.3571',
                     letterSpacing: '0.125rem',
+                    fontWeight: 'bold',
+                }
+            ],
+            'h5': [
+                /*24-fs 33-lh 1-ls*/
+                '1.5rem', {
+                    lineHeight: '2.0625rem',
+                    letterSpacing: '0.10625rem',
                     fontWeight: 'bold',
                 }
             ],
