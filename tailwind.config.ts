@@ -27,6 +27,7 @@ export default {
             'body': [ /*15px-fs/25px-lh*/
                 '0.9375rem', {
                     lineHeight: '1.5625rem',
+                    fontWeight: 500
                 }
             ],
             'overline': [
@@ -64,6 +65,13 @@ export default {
                 '1.75rem', {
                     lineHeight: '1.3571',
                     letterSpacing: '0.125rem',
+                    fontWeight: 'bold',
+                }
+            ],
+            'h6': [
+                /*18-fs 1.3-ls*/
+                '1.125rem', {
+                    letterSpacing: '0.08125rem',
                     fontWeight: 'bold',
                 }
             ]

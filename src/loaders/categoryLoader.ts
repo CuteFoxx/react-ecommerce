@@ -1,16 +1,7 @@
-/*
-Basically the same as home loader, i made them for sake of scalability, maybe ill make some simple API for this project but im not so sure :)
-*/
-
-import {Product} from "../types/Product.ts";
-
 const homeLoader = async () => {
-    const data : Product[] = await fetch('/data.json').then(res => res.json());
-    const newProducts = await  data?.filter((item) => item.new);
-    const rest = await data?.filter((item) => !item.new);
+    const data = await fetch('/data.json').then(res => res.json());
 
-
-    return [...newProducts, ...rest];
+    return data;
 }
 
 export default homeLoader;

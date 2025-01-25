@@ -1,11 +1,8 @@
-
 import FeaturedProduct from "../FeaturedProduct/FeaturedProduct.tsx";
 import {useSelector} from "react-redux";
 import {Product} from "../../types/Product.ts";
 
-
 const FeaturedProducts = ({className} : {className?: string}) => {
-
     const featuredProducts : Product[] = useSelector((state : any) => state.featuredProducts.value.data);
 
     return (

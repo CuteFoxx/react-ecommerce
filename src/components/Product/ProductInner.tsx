@@ -1,0 +1,70 @@
+import {Product} from "../../types/Product.ts";
+import ResponsiveImage from "../ResponsiveImage/ResponsiveImage.tsx";
+import {ChangeEvent, useState} from "react";
+import thousandsFormatter from "../../utils/thousandsFormatter.ts";
+
+interface ProductProps {
+    product: Product;
+    className?: string;
+}
+
+const ProductInner = ({product,className}: ProductProps ) => {
+    const {image, name, new: isNew, description,price} = product;
+
+    const [count,setCount] = useState<number>(1);
+
+    const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
+        validateCount(e) ? setCount(+e.target.value) : '';
+    }
+    const increment = () => {
+        validateCount(count) ? setCount(prev => prev + 1) : '';
+    }
+
+    const decrement = () => {
+        (validateCount(count) && count !==1) ? setCount(prev => prev - 1) : '';
+    }
+
+    const validateCount = (e: ChangeEvent<HTMLInputElement> | number) => {
+        let value = 0;
+        if(typeof e === "number"){
+            value = e;
+        } else {
+            value = +e.target.value;
+        }
+        if(isNaN(value)){
+            return false;
+        } else if(+value <= 0) {
+            setCount(1);
+            return false;
+        } else if(+value >= 99){
+            setCount(99);
+            return false;
+        }
+        return true;
+    }
+
+
+    return (
+        <article className={`${className ? className : ''} grid gap-8 justify-items-center text-left md:grid-cols-[minmax(17.5625rem,1fr)_minmax(21.25rem,1fr)] md:gap-[4.3125rem] lg:grid-cols-[minmax(33.75rem,1fr)_minmax(27.8125rem,1fr)] lg:gap-[7.8125rem]`}>
+            <ResponsiveImage className='rounded-lg overflow-hidden md:h-[30rem] w-full lg:h-[35rem]' {...image} />
+            <div className='md:px-0 grid gap-6  md:gap-[2rem] md:content-center lg:justify-items-start lg:text-left lg:py-[6.8125rem]'>
+                {isNew && (<p className='uppercase text-overline text-orange mt-2 md:-mb-[1rem] lg:mt-0'>New Product</p>)}
+                <h2 className='text-h4 uppercase md:text-h2 md:max-w-sm'>{name}</h2>
+                <p className='text-body opacity-50 lg:mb-10'>{description}</p>
+                <h4 className='text-h6' aria-label={`${price} price`}>$ {thousandsFormatter(price)}</h4>
+                <div className='flex items-center gap-4 mt-2 lg:mt-4'>
+                    <div className='grid grid-cols-3 items-center content-center max-w-[7.5rem] w-full h-[3rem] bg-grey px-[0.96875rem] text-sub-title'>
+                        <button className='opacity-25' onClick={decrement}>-</button>
+                        <input className='bg-transparent border-none max-w-full text-center' type="text" value={count} onChange={handleOnChange}/>
+                        <button className='opacity-25' onClick={increment}>+</button>
+                    </div>
+                    <button className='button h-[3rem] w-full max-w-[10rem] text-sub-title'>
+                        Add to cart
+                    </button>
+                </div>
+            </div>
+        </article>
+    );
+};
+
+export default ProductInner;
