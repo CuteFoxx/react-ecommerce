@@ -6,6 +6,7 @@ import {Devices} from "../types/Devices.ts";
 import ProductInner from "../components/Product/ProductInner.tsx";
 import BackLink from "../components/BackLink/BackLink.tsx";
 import NodeAndTitle from "../components/NodeAndTitle/NodeAndTitle.tsx";
+import Gallery from "../components/Gallery/Gallery.tsx";
 
 type ProductProps = {};
 
@@ -38,6 +39,7 @@ const Product = ({}: ProductProps) => {
                     </ul>
                 </NodeAndTitle>
             </div>
+            <Gallery className='mt-[5.5rem] md:mt-[7.5rem] lg:mt-[10rem]' {...product.gallery}/>
             <Categories
                 className='pt-[5.75rem] pb-[7.5rem] md:pt-[9.25rem] md:pb-[6rem] lg:pt-[12.5rem] lg:pb-[10.5rem]'/>
             <AboutUs className='mb-[7.5rem] md:mb-24 lg:mb-[12.5rem]' title={AboutUsTitle} image={AboutUsImages}
