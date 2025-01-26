@@ -47,7 +47,7 @@ const Product = ({}: ProductProps) => {
                 <div className='flex flex-col gap-y-14 md:grid md:grid-cols-3 md:gap-x-3 lg:gap-x-[1.875rem]'>
                     {product.others.map(otherProduct => {
                             return (
-                                <ProductCard {...otherProduct} category={product.category} />
+                                <ProductCard {...otherProduct} />
                             )
                         }
                     )}

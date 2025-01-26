@@ -1,15 +1,9 @@
 import ResponsiveImage from "../ResponsiveImage/ResponsiveImage.tsx";
 import {Link} from "react-router";
-import {Devices} from "../../types/Devices.ts";
+import type {productShort} from "../../types/ProductShort.ts";
 
-type ProductCardProps = {
-    category: string;
-    slug: string;
-    image: Devices,
-    name: string;
-};
 
-const ProductCard = ({name,image,category,slug}: ProductCardProps) => {
+const ProductCard = ({name,image,category,slug}: productShort) => {
 
     return (
         <div className='flex flex-col gap-y-8 items-center'>

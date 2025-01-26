@@ -1,10 +1,5 @@
 import type { Devices as devices } from './Devices';
-
-type productShort = {
-    slug: string;
-    name: string;
-    image: devices
-}
+import type {productShort} from "./ProductShort.ts";
 
 export type Product = {
     id: number;
