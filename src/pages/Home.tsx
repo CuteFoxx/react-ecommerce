@@ -1,4 +1,4 @@
-import {useLoaderData} from "react-router";
+import {ScrollRestoration, useLoaderData} from "react-router";
 import Intro from "../components/Intro/Intro.tsx";
 import {Product} from "../types/Product.ts";
 import Categories from "../components/Categories/Categories.tsx";
@@ -33,6 +33,7 @@ const Home = () => {
                 className='pt-[5.75rem] pb-[7.5rem] md:pt-[9.25rem] md:pb-[6rem] lg:pt-[12.5rem] lg:pb-[10.5rem]'/>
             {featuredProducts && <FeaturedProducts className='mb-[7.5rem] md:mb-24 lg:mb-[12.5rem]'/>}
             <AboutUs className='mb-[7.5rem] md:mb-24 lg:mb-[12.5rem]' title={AboutUsTitle} image={AboutUsImages} description={'Located at the heart of New York City, Audiophile is the premier store for high end headphones, earphones, speakers, and audio accessories. We have a large showroom and luxury demonstration rooms available for you to browse and experience a wide range of our products. Stop by our store to meet some of the fantastic people who make Audiophile the best place to buy your portable audio equipment.'}/>
+            <ScrollRestoration/>
         </div>
     );
 };
