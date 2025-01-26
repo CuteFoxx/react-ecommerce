@@ -7,6 +7,7 @@ import ProductInner from "../components/Product/ProductInner.tsx";
 import BackLink from "../components/BackLink/BackLink.tsx";
 import NodeAndTitle from "../components/NodeAndTitle/NodeAndTitle.tsx";
 import Gallery from "../components/Gallery/Gallery.tsx";
+import ProductCard from "../components/ProductCard/ProductCard.tsx";
 
 type ProductProps = {};
 
@@ -29,7 +30,8 @@ const Product = ({}: ProductProps) => {
                 <NodeAndTitle className='mt-[5.5rem] md:mt-[7.5rem]' title="Features">
                     <p className='text-body opacity-50'>{product.description}</p>
                 </NodeAndTitle>
-                <NodeAndTitle className='mt-[7rem] md:grid md:grid-cols-2 md:mt-[7.5rem] lg:grid-cols-1' title="in the box">
+                <NodeAndTitle className='mt-[7rem] md:grid md:grid-cols-2 md:mt-[7.5rem] lg:grid-cols-1'
+                              title="in the box">
                     <ul>
                         {product.includes.map((includes, index) => {
                             return (<li className='text-body' key={index}><span
@@ -40,6 +42,17 @@ const Product = ({}: ProductProps) => {
                 </NodeAndTitle>
             </div>
             <Gallery className='mt-[5.5rem] md:mt-[7.5rem] lg:mt-[10rem]' {...product.gallery}/>
+            <div className='mt-[7.5rem] lg:mt-[10rem]'>
+                <h2 className='uppercase text-h5 mb-10 md:text-center md:text-h3 md:mb-14 lg:mb-16'>You may also like</h2>
+                <div className='flex flex-col gap-y-14 md:grid md:grid-cols-3 md:gap-x-3 lg:gap-x-[1.875rem]'>
+                    {product.others.map(otherProduct => {
+                            return (
+                                <ProductCard {...otherProduct} category={product.category} />
+                            )
+                        }
+                    )}
+                </div>
+            </div>
             <Categories
                 className='pt-[5.75rem] pb-[7.5rem] md:pt-[9.25rem] md:pb-[6rem] lg:pt-[12.5rem] lg:pb-[10.5rem]'/>
             <AboutUs className='mb-[7.5rem] md:mb-24 lg:mb-[12.5rem]' title={AboutUsTitle} image={AboutUsImages}
