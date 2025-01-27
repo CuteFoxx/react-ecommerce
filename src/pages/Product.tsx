@@ -45,9 +45,9 @@ const Product = ({}: ProductProps) => {
             <div className='mt-[7.5rem] lg:mt-[10rem]'>
                 <h2 className='uppercase text-h5 mb-10 md:text-center md:text-h3 md:mb-14 lg:mb-16'>You may also like</h2>
                 <div className='flex flex-col gap-y-14 md:grid md:grid-cols-3 md:gap-x-3 lg:gap-x-[1.875rem]'>
-                    {product.others.map(otherProduct => {
+                    {product.others.map((otherProduct, index) => {
                             return (
-                                <ProductCard {...otherProduct} />
+                                <ProductCard key={index} {...otherProduct} />
                             )
                         }
                     )}

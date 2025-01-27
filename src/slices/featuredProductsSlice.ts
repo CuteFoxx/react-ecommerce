@@ -4,7 +4,7 @@ import {Product} from "../types/Product.ts";
 type featuredProductsStateValue = {
     data: Product[];
 }
-interface featuredProductState {
+export interface featuredProductState {
     value: featuredProductsStateValue
 }
 

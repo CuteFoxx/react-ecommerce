@@ -3,7 +3,7 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 type isOpenStateValue = {
     isOpen: boolean;
 }
-interface isOpenState {
+export interface isOpenState {
     value: isOpenStateValue
 }
 

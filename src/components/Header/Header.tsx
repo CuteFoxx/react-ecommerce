@@ -6,10 +6,10 @@ import Menu from "./Menu/Menu.tsx";
 import {useEffect} from "react";
 import Links from "../../utils/links.ts";
 import {useDispatch, useSelector} from "react-redux";
-import {setIsOpen} from "../../slices/isOpenSlice.ts";
+import {isOpenState, setIsOpen} from "../../slices/isOpenSlice.ts";
 
 const Header = () => {
-    const isOpen = useSelector((state : any) => state.isOpen.value.isOpen);
+    const isOpen = useSelector((state : {isOpen: isOpenState}) => state.isOpen.value.isOpen);
     const dispatch = useDispatch();
 
 

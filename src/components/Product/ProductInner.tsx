@@ -2,6 +2,8 @@ import {Product} from "../../types/Product.ts";
 import ResponsiveImage from "../ResponsiveImage/ResponsiveImage.tsx";
 import {ChangeEvent, useState} from "react";
 import thousandsFormatter from "../../utils/thousandsFormatter.ts";
+import {useDispatch} from "react-redux";
+import {addToCart} from "../../slices/cartSlice.ts";
 
 interface ProductProps {
     product: Product;
@@ -10,6 +12,7 @@ interface ProductProps {
 
 const ProductInner = ({product,className}: ProductProps ) => {
     const {image, name, new: isNew, description,price} = product;
+    const dispatch = useDispatch();
 
     const [count,setCount] = useState<number>(1);
 
@@ -25,7 +28,7 @@ const ProductInner = ({product,className}: ProductProps ) => {
     }
 
     const validateCount = (e: ChangeEvent<HTMLInputElement> | number) => {
-        let value = 0;
+        let value: number;
         if(typeof e === "number"){
             value = e;
         } else {
@@ -44,6 +47,10 @@ const ProductInner = ({product,className}: ProductProps ) => {
     }
 
 
+    function handleAddToCart() {
+        dispatch(addToCart({product, quantity: count}))
+    }
+
     return (
         <article className={`${className ? className : ''} grid gap-8 justify-items-center text-left md:grid-cols-[minmax(17.5625rem,1fr)_minmax(21.25rem,1fr)] md:gap-[4.3125rem] lg:grid-cols-[minmax(33.75rem,1fr)_minmax(27.8125rem,1fr)] lg:gap-[7.8125rem]`}>
             <ResponsiveImage className='rounded-lg overflow-hidden md:h-[30rem] w-full lg:h-[35rem]' {...image} />
@@ -58,7 +65,7 @@ const ProductInner = ({product,className}: ProductProps ) => {
                         <input className='bg-transparent border-none max-w-full text-center' type="text" value={count} onChange={handleOnChange}/>
                         <button className='opacity-25' onClick={increment}>+</button>
                     </div>
-                    <button className='button h-[3rem] w-full max-w-[10rem] text-sub-title'>
+                    <button onClick={handleAddToCart} className='button h-[3rem] w-full max-w-[10rem] text-sub-title'>
                         Add to cart
                     </button>
                 </div>
