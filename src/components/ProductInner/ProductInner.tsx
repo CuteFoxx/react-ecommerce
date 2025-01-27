@@ -1,9 +1,10 @@
 import {Product} from "../../types/Product.ts";
 import ResponsiveImage from "../ResponsiveImage/ResponsiveImage.tsx";
-import {ChangeEvent, useState} from "react";
+import {ChangeEvent, useEffect, useState} from "react";
 import thousandsFormatter from "../../utils/thousandsFormatter.ts";
 import {useDispatch} from "react-redux";
 import {addToCart} from "../../slices/cartSlice.ts";
+import {useLocation} from "react-router";
 
 interface ProductProps {
     product: Product;
@@ -13,6 +14,7 @@ interface ProductProps {
 const ProductInner = ({product,className}: ProductProps ) => {
     const {image, name, new: isNew, description,price} = product;
     const dispatch = useDispatch();
+    const location = useLocation();
 
     const [count,setCount] = useState<number>(1);
 
@@ -26,6 +28,12 @@ const ProductInner = ({product,className}: ProductProps ) => {
     const decrement = () => {
         (validateCount(count) && count !==1) ? setCount(prev => prev - 1) : '';
     }
+
+    useEffect(() => {
+        return () => {
+            setCount(1);
+        }
+    }, [location]);
 
     const validateCount = (e: ChangeEvent<HTMLInputElement> | number) => {
         let value: number;
@@ -49,6 +57,7 @@ const ProductInner = ({product,className}: ProductProps ) => {
 
     function handleAddToCart() {
         dispatch(addToCart({product, quantity: count}))
+        setCount(1);
     }
 
     return (

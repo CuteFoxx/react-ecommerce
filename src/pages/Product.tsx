@@ -3,7 +3,7 @@ import type {Product} from "../types/Product.ts";
 import AboutUs from "../components/AboutUs/AboutUs.tsx";
 import Categories from "../components/Categories/Categories.tsx";
 import {Devices} from "../types/Devices.ts";
-import ProductInner from "../components/Product/ProductInner.tsx";
+import ProductInner from "../components/ProductInner/ProductInner.tsx";
 import BackLink from "../components/BackLink/BackLink.tsx";
 import NodeAndTitle from "../components/NodeAndTitle/NodeAndTitle.tsx";
 import Gallery from "../components/Gallery/Gallery.tsx";
