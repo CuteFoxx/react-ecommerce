@@ -30,8 +30,29 @@ export const cartSlice = createSlice({
             } else {
                 state.items.push({product,quantity});
             }
+        },
+        removeAll: (state) => {
+            state.items = [];
+        },
+        decrement: (state: cartState, action: PayloadAction<{id: number, amount: number}> ) => {
+            const {id, amount} = action.payload;
+
+            const indexProductId = (state.items).findIndex(item => item.product.id === id);
+
+            if(state.items[indexProductId].quantity >= 2){
+                state.items[indexProductId].quantity -= amount;
+            }
+        },
+        increment: (state: cartState, action: PayloadAction<{id: number, amount: number}> ) => {
+            const {id, amount} = action.payload;
+
+            const indexProductId = (state.items).findIndex(item => item.product.id === id);
+
+            if(state.items[indexProductId].quantity < 99){
+                state.items[indexProductId].quantity += amount;
+            }
         }
     }
 })
 
-export const {addToCart} = cartSlice.actions;
+export const {addToCart,removeAll,decrement,increment} = cartSlice.actions;

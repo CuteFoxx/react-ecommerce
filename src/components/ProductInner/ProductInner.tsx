@@ -4,7 +4,8 @@ import {ChangeEvent, useEffect, useState} from "react";
 import thousandsFormatter from "../../utils/thousandsFormatter.ts";
 import {useDispatch} from "react-redux";
 import {addToCart} from "../../slices/cartSlice.ts";
-import {useLocation} from "react-router";
+import ChangeQuantity from "../ChangeQuantity/ChangeQuantity.tsx";
+import {validateCount} from "../../utils/validateCount.ts";
 
 interface ProductProps {
     product: Product;
@@ -14,12 +15,24 @@ interface ProductProps {
 const ProductInner = ({product,className}: ProductProps ) => {
     const {image, name, new: isNew, description,price} = product;
     const dispatch = useDispatch();
-    const location = useLocation();
-
     const [count,setCount] = useState<number>(1);
 
+    useEffect(() => {
+        return () => {
+            setCount(1);
+        }
+    }, [location]);
+
+
+    function handleAddToCart() {
+        dispatch(addToCart({product, quantity: count}))
+        setCount(1);
+    }
+
     const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
-        validateCount(e) ? setCount(+e.target.value) : '';
+        if(validateCount(e)) {
+            setCount(+e.target.value)
+        }
     }
     const increment = () => {
         validateCount(count) ? setCount(prev => prev + 1) : '';
@@ -35,31 +48,6 @@ const ProductInner = ({product,className}: ProductProps ) => {
         }
     }, [location]);
 
-    const validateCount = (e: ChangeEvent<HTMLInputElement> | number) => {
-        let value: number;
-        if(typeof e === "number"){
-            value = e;
-        } else {
-            value = +e.target.value;
-        }
-        if(isNaN(value)){
-            return false;
-        } else if(+value <= 0) {
-            setCount(1);
-            return false;
-        } else if(+value >= 99){
-            setCount(99);
-            return false;
-        }
-        return true;
-    }
-
-
-    function handleAddToCart() {
-        dispatch(addToCart({product, quantity: count}))
-        setCount(1);
-    }
-
     return (
         <article className={`${className ? className : ''} grid gap-8 justify-items-center text-left md:grid-cols-[minmax(17.5625rem,1fr)_minmax(21.25rem,1fr)] md:gap-[4.3125rem] lg:grid-cols-[minmax(33.75rem,1fr)_minmax(27.8125rem,1fr)] lg:gap-[7.8125rem]`}>
             <ResponsiveImage className='rounded-lg overflow-hidden md:h-[30rem] w-full lg:h-[35rem]' {...image} />
@@ -69,11 +57,7 @@ const ProductInner = ({product,className}: ProductProps ) => {
                 <p className='text-body opacity-50 lg:mb-10'>{description}</p>
                 <h4 className='text-h6' aria-label={`${price} price`}>$ {thousandsFormatter(price)}</h4>
                 <div className='flex items-center gap-4 mt-2 lg:mt-4'>
-                    <div className='grid grid-cols-3 items-center content-center max-w-[7.5rem] w-full h-[3rem] bg-grey px-[0.96875rem] text-sub-title'>
-                        <button className='opacity-25' onClick={decrement}>-</button>
-                        <input className='bg-transparent border-none max-w-full text-center' type="text" value={count} onChange={handleOnChange}/>
-                        <button className='opacity-25' onClick={increment}>+</button>
-                    </div>
+                    <ChangeQuantity count={count} increment={increment} decrement={decrement} handleOnChange={handleOnChange} />
                     <button onClick={handleAddToCart} className='button h-[3rem] w-full max-w-[10rem] text-sub-title'>
                         Add to cart
                     </button>
