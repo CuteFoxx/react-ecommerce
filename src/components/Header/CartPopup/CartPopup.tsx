@@ -3,14 +3,17 @@ import {removeAll, cartState, decrement, increment} from "../../../slices/cartSl
 import ResponsiveImage from "../../ResponsiveImage/ResponsiveImage.tsx";
 import thousandsFormatter from "../../../utils/thousandsFormatter.ts";
 import ChangeQuantity from "../../ChangeQuantity/ChangeQuantity.tsx";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {Link} from "react-router";
 import {deliveryFee} from "../../../utils/deliveryFee.ts";
+import {setIsCartPopupOpen} from "../../../slices/cartPopupSlice.ts";
 
 
 const CartPopup = () => {
     const cartItems = useSelector((store: {cart: cartState}) => store.cart.items);
     const isPopupOpen = useSelector((state: any) => state.cartPopup.value.isOpen);
+    const dialogRef = useRef<HTMLDialogElement | null>(null);
+    const checkoutButtonRef = useRef<HTMLAnchorElement | null>(null);
     const [total, setTotal] = useState<number>(0);
     const dispatch = useDispatch();
 
@@ -41,8 +44,22 @@ const CartPopup = () => {
     }, [cartItems]);
 
 
+    useEffect(() => {
+        const handler = (e: any) => {
+            if(dialogRef.current !== null){
+                if(e.target.parentElement.id === 'cart-button'){
+                    return
+                }
+                if(!dialogRef?.current.contains(e.target) || e.target === checkoutButtonRef.current){
+                    dispatch(setIsCartPopupOpen({isOpen: false}));
+                }
+            }
+        }
+        document.addEventListener('click', handler)
+    });
+
     return (
-        <dialog className='absolute z-[5] top-[7.125rem] left-6 right-6 h-[73dvh] w-[87vw] bg-white overflow-hidden rounded-lg py-8 px-7 md:w-[23.5625rem]  md:h-[30.5rem] md:left-[unset] lg:right-[10.3125rem]' open={isPopupOpen}>
+        <dialog className='absolute z-[5] top-[7.125rem] left-6 right-6 h-[73dvh] w-[87vw] bg-white overflow-hidden rounded-lg py-8 px-7 md:w-[23.5625rem]  md:h-[30.5rem] md:left-[unset] lg:right-[10.3125rem]' open={isPopupOpen} ref={dialogRef}>
             <div className='h-full flex flex-col'>
                 <div className='flex justify-between items-center'>
                     {(cartItems.length > 0) ? <h3 className='uppercase text-h6'>Cart ({cartItems.length})</h3> : <h3 className='uppercase text-h6'>Cart is empty</h3>}
@@ -70,7 +87,7 @@ const CartPopup = () => {
                             <span className='uppercase opacity-50'>Total</span>
                             <span className='text-h6'>$ {thousandsFormatter(total)}</span>
                         </div>
-                        <Link className='button' to="cart/checkout">checkout</Link>
+                        <Link ref={checkoutButtonRef}  className='button' to="/checkout">checkout</Link>
                     </div>}
             </div>
         </dialog>

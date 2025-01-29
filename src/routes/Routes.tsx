@@ -7,6 +7,7 @@ import Error from "../components/Error/Error.tsx";
 import categoryLoader from "../loaders/categoryLoader.ts";
 import Product from "../pages/Product.tsx";
 import productLoader from "../loaders/productLoader.ts";
+import Checkout from "../pages/Checkout.tsx";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -14,6 +15,7 @@ const router = createBrowserRouter(
             <Route index element={<Home/>} loader={homeLoader}/>
             <Route path="/:category" element={<Category/>} loader={categoryLoader}/>
             <Route path="/:category/:productName" element={<Product/>} loader={productLoader}/>
+            <Route path="/checkout" element={<Checkout />} />
         </Route>
     )
 );
