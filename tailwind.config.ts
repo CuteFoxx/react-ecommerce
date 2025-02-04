@@ -15,13 +15,18 @@ export default {
                 "pale-orange": "#fbaf85",
                 "white": "#FFFFFF",
                 "black": "#000000",
+                'border': '#CFCFCF'
             }
         },
 
         fontSize: {
+            'label': ['0.75rem', { /*13px/25px-lh*/
+                letterSpacing: '0.0625rem',
+                fontWeight: 'bold'
+            }],
             'sub-title': ['0.8125rem', { /*13px/25px-lh*/
                 lineHeight: '1.5625rem',
-                letterSpacing: '0.0625rem',
+                letterSpacing: '-0.013125rem',
                 fontWeight: 'bold'
             }],
             'body': [ /*15px-fs/25px-lh*/

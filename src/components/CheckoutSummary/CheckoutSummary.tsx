@@ -27,8 +27,11 @@ const CheckoutSummary = () => {
 
     useEffect(() => {
         setVat(Math.round(total * 0.2))
-        setGrandTotal(Math.round(total + vat))
     }, [total]);
+
+    useEffect(() => {
+        setGrandTotal(Math.round(total + vat + deliveryFee))
+    }, [vat]);
 
     return (
         <div className='bg-white rounded-lg overflow-hidden mt-8 px-6 py-8 md:px-8 lg:mt-0'>
@@ -67,7 +70,7 @@ const CheckoutSummary = () => {
                     <span className='summary-title'>GRAND TOTAL</span>
                     <span className='summary-price text-orange'>${thousandsFormatter(grandTotal)}</span>
                 </div>
-                <button className="button mt-6">CONTINUE & PAY</button>
+                <button type='submit' className="button mt-6">CONTINUE & PAY</button>
             </div>
 
         </div>

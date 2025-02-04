@@ -1,6 +1,13 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {Product} from "../types/Product.ts";
 
+let items;
+if(localStorage.getItem("cart") !== null) {
+    items = JSON.parse(localStorage.getItem("cart") || '' ) ;
+} else {
+    items = [];
+}
+
 export type cartStateValue = {
         product: Product,
         quantity: number,
@@ -10,8 +17,12 @@ export interface cartState {
 }
 
 const initialState = {
-    items: [],
+    items: items,
 } as cartState;
+
+
+
+
 
 export const cartSlice = createSlice({
     name: "cart",
@@ -30,9 +41,13 @@ export const cartSlice = createSlice({
             } else {
                 state.items.push({product,quantity});
             }
+
+            localStorage.setItem("cart", JSON.stringify(state.items));
         },
         removeAll: (state) => {
             state.items = [];
+
+            localStorage.setItem("cart", JSON.stringify(state.items));
         },
         decrement: (state: cartState, action: PayloadAction<{id: number, amount: number}> ) => {
             const {id, amount} = action.payload;
@@ -42,6 +57,7 @@ export const cartSlice = createSlice({
             if(state.items[indexProductId].quantity >= 2){
                 state.items[indexProductId].quantity -= amount;
             }
+            localStorage.setItem("cart", JSON.stringify(state.items));
         },
         increment: (state: cartState, action: PayloadAction<{id: number, amount: number}> ) => {
             const {id, amount} = action.payload;
@@ -51,6 +67,8 @@ export const cartSlice = createSlice({
             if(state.items[indexProductId].quantity < 99){
                 state.items[indexProductId].quantity += amount;
             }
+
+            localStorage.setItem("cart", JSON.stringify(state.items));
         }
     }
 })

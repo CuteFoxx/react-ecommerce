@@ -21,7 +21,7 @@ const Checkout = ({}: CheckoutProps) => {
         }
     }, [location]);
 
-    console.log(cartItems);
+    console.log(localStorage.getItem("cart"));
 
     return (
         <div className='pt-4 pb-24 lg:grid lg:grid-cols-[1fr_21.875rem] lg:gap-[1.875rem]'>
