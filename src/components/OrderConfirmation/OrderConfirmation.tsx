@@ -2,8 +2,8 @@ import {Dispatch, SetStateAction, useEffect, useRef, useState} from "react";
 import {Link} from "react-router";
 import ResponsiveImage from "../ResponsiveImage/ResponsiveImage.tsx";
 import thousandsFormatter from "../../utils/thousandsFormatter.ts";
-import {useSelector} from "react-redux";
-import {cartState, cartStateValue} from "../../slices/cartSlice.ts";
+import {useDispatch, useSelector} from "react-redux";
+import {cartState, cartStateValue, removeAll} from "../../slices/cartSlice.ts";
 import CartTotal from "../CartTotal/CartTotal.tsx";
 
 type OrderConfirmationProps = {
@@ -14,6 +14,7 @@ type OrderConfirmationProps = {
 const OrderConfirmation = ({isOpen, setIsOpen}: OrderConfirmationProps) => {
     const dialogRef = useRef<HTMLDialogElement | null>(null);
     const cartItems = useSelector((store: { cart: cartState }) => store.cart.items);
+    const dispatch = useDispatch();
 
     const [viewMore, setViewMore] = useState<boolean>(false);
 
@@ -56,9 +57,8 @@ const OrderConfirmation = ({isOpen, setIsOpen}: OrderConfirmationProps) => {
                 <p className='text-body opacity-50 mb-6'>You will receive an email confirmation shortly.</p>
                 <div className='overflow-y-auto rounded-lg bg-grey mb-6 p-6 md:grid md:grid-cols-[41fr_33fr]'>
                     <div className='md:pr-6  overflow-auto'>
-                        <div className='border-black/10 border-b pb-3'>
+                        <div className={`${cartItems.length > 1 ? "border-black/10 border-b pb-3" : ""}`}>
                             {cartItems.map((item, index) => {
-
                                 return <>
                                     {index === 0 && <OrderConfirmationProduct item={item} index={index} key={index}/>}
                                     {index > 0 &&
@@ -72,10 +72,11 @@ const OrderConfirmation = ({isOpen, setIsOpen}: OrderConfirmationProps) => {
 
                             })}
                         </div>
-                         <button onClick={() => setViewMore(prev => !prev)} className='mt-3 text-center text-sub-title text-black/50'>
+                        { cartItems.length > 1 && <button onClick={() => setViewMore(prev => !prev)} className='mt-3 text-center text-sub-title text-black/50'>
                              {viewMore ? 'View less' : `and ${cartItems.length - 1} other item(s)`}
 
                         </button>
+                        }
 
                     </div>
                     <div className='bg-black !text-white -mx-6 -mb-6 p-6 mt-6 md:-my-6 md:ml-0  '>
@@ -86,7 +87,9 @@ const OrderConfirmation = ({isOpen, setIsOpen}: OrderConfirmationProps) => {
                         </CartTotal>
                     </div>
                 </div>
-                <Link className='button uppercase text-sub-title' to='/'>BACK TO HOME</Link>
+                <Link className='button uppercase text-sub-title' to='/' onClick={() => {
+                    dispatch(removeAll());
+                }}>BACK TO HOME</Link>
             </div>
         </dialog>
     );

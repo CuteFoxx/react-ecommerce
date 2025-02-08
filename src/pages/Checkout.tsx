@@ -26,11 +26,9 @@ const Checkout = ({}: CheckoutProps) => {
 
         return () => {
             document.body.style.background = "";
+            setIsOpen(false);
         }
     }, [location]);
-
-    useEffect(() => {
-    }, []);
 
     const onSubmit =  () => {
         if(formRef.current != null) {
@@ -46,7 +44,8 @@ const Checkout = ({}: CheckoutProps) => {
         if(!isOpen && clearForm){
             removeAllFunc();
         }
-    }, [isOpen, clearForm]);
+    }, [isOpen, clearForm, location]);
+
 
     return (
         <div className='pt-4 pb-24 lg:grid lg:grid-cols-[1fr_21.875rem] lg:gap-[1.875rem]'>
